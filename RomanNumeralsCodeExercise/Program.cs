@@ -14,73 +14,28 @@ namespace RomanNumeralsCodeExercise
 
         internal static string ConvertArabicToRoman(int arabicNumber)
         {
+            int currentValue = arabicNumber;
             var output = "";
-            while (arabicNumber >= 1000)
+
+            int[] arabicValues =
             {
-                output += "M";
-                arabicNumber -= 1000;
-            }
-            if (arabicNumber >= 900)
+                1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1
+            };
+            string[] romanValues =
             {
-                output += "CM";
-                arabicNumber -= 900;
-            }
-            if (arabicNumber >= 500)
+                "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V",
+                "IV", "I"
+            };
+
+            for (int i = 0; i < arabicValues.Length; i++)
             {
-                output += "D";
-                arabicNumber -= 500;
+                while (currentValue >= arabicValues[i])
+                {
+                    output += romanValues[i];
+                    currentValue -= arabicValues[i];
+                }
             }
-            if (arabicNumber >= 400)
-            {
-                output += "CD";
-                arabicNumber -= 400;
-            }
-            while (arabicNumber >= 100)
-            {
-                output += "C";
-                arabicNumber -= 100;
-            }
-            if (arabicNumber >= 90)
-            {
-                output += "XC";
-                arabicNumber -= 90;
-            }
-            if (arabicNumber >= 50)
-            {
-                output += "L";
-                arabicNumber -= 50;
-            }
-            if (arabicNumber >= 40)
-            {
-                output += "XL";
-                arabicNumber -= 40;
-            }
-            while (arabicNumber >= 10)
-            {
-                output += "X";
-                arabicNumber -= 10;
-            }
-            if (arabicNumber == 9)
-            {
-                output += "IX";
-                arabicNumber -= 9;
-            }
-            if (arabicNumber >= 5)
-            {
-                output += "V";
-                arabicNumber -= 5;
-            }
-            if (arabicNumber == 4)
-            {
-                output += "IV";
-                arabicNumber -= 4; 
-            }
-            while (arabicNumber >= 1)
-            {
-                output += "I";
-                arabicNumber--;
-            }
-              
+            
             return output;
         }
     }
